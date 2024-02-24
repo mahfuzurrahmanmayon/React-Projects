@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #F0F2F5;
+}
+.container{
+    max-width: 1440px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin: auto;
+}
+.hero{
+    background-color: #F1F7FF;
+}
+.hero-Wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.hero-right{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.hero-right a img{
+    width: 30px;
+    height: 30px;
+}
+.hero-right a svg {
+    width: 30px;
+    height: 30px;
+    color: #242424;
+}
+.main-container{
+    max-width: 1070px;
+    margin: 0 auto;
+}
+.main-wrapper{
+    background: #fff;
+    padding: 25px;
+}
+.analyze-text-result{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.analyze-item{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 125px;
+    gap: 8px;
+}
+.analyze-item .text{
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inter;
+    color: #000;
+    opacity: .6;
+
+}
+.analyze-item .number{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: inter;
+    color: #000;
+}
+.main{
+    margin-top: 80px;
+}
