@@ -75,13 +75,10 @@ a {
   font-weight: 500;
   opacity: 0.6;
 }
-.result-bar .result-box .box-value {
-  color: #000;
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 10px;
-  font-family: "Inter", sans-serif;
-  text-align: center;
+
+span.box\=value {
+    font-size: 20px;
+    font-weight: 700;
 }
 .text-area {
   background-color: #fff;
@@ -137,4 +134,8 @@ a {
   font-weight: 500;
   color: #242424;
   line-height: 0px;
+}
+span.box-value {
+    font-size: 20px;
+    font-weight: 700;
 }
