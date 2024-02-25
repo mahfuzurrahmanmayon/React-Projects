@@ -7,6 +7,7 @@ import "./Analyzer.css";
 const Analyzer = () => {
   const [inputText, setInputText] = useState("")
   const [wordCount,setWordCount] = useState(0)
+  const [charCount,setCharCount] = useState(0)
 
   const updateWordCount = (text) => {
     const words = text.trim().split(/\s+/);
@@ -14,10 +15,17 @@ const Analyzer = () => {
     setWordCount(filteredWords.length);
   };
 
+  const updateCharCount = (text) => {
+    const characters = text.replace(/\s/g, "");
+    setCharCount(characters.length)
+
+  }
+
   const handleTextChange = (e) => {
     const text = e.target.value;
     setInputText(text)
     updateWordCount(text)
+    updateCharCount(text)
   }
 
   return (
@@ -49,7 +57,7 @@ const Analyzer = () => {
             </div>
             <div className="result-box">
               <span className="box-title">Characters</span>
-              <span className="box=value">5</span>
+              <span className="box=value">{charCount}</span>
             </div>
             <div className="result-box">
               <span className="box-title">Sentences</span>
