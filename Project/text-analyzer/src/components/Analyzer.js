@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebook } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import wegems from "../../src/images/Wegems.svg";
 import "./Analyzer.css";
 
 const Analyzer = () => {
+  const [inputText, setInputText] = useState("")
+  const [wordCount,setWordCount] = useState(0)
+
+  const updateWordCount = (text) => {
+    const words = text.trim().split(/\s+/);
+    const filteredWords = words.filter(word => word !== "");
+    setWordCount(filteredWords.length);
+  };
+
+  const handleTextChange = (e) => {
+    const text = e.target.value;
+    setInputText(text)
+    updateWordCount(text)
+  }
+
   return (
     <div className="Analyzer">
       <div className="hero">
@@ -15,10 +30,10 @@ const Analyzer = () => {
               <a href="https://www.wegems.co/">
                 <img src={wegems} alt="" />
               </a>
-              <a href="https://www.facebook.com/mahfuzurrahmanmayon">
+              <a className="fb" href="https://www.facebook.com/mahfuzurrahmanmayon">
                 <FaFacebook />
               </a>
-              <a href="https://www.linkedin.com/in/mahfujurrahmanmayon/">
+              <a className="li" href="https://www.linkedin.com/in/mahfujurrahmanmayon/">
                 <FaLinkedin />
               </a>
             </div>
@@ -30,7 +45,7 @@ const Analyzer = () => {
           <div className="result-bar">
             <div className="result-box">
               <span className="box-title">Words</span>
-              <span className="box=value">5</span>
+              <span className="box=value">{wordCount}</span>
             </div>
             <div className="result-box">
               <span className="box-title">Characters</span>
@@ -50,6 +65,8 @@ const Analyzer = () => {
             </div>
           </div>
           <textarea
+            value={inputText}
+            onChange={handleTextChange}
             className="text-area"
             placeholder="Paste your text here ..."
           ></textarea>

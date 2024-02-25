@@ -77,8 +77,8 @@ a {
 }
 
 span.box\=value {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 .text-area {
   background-color: #fff;
@@ -136,6 +136,12 @@ span.box\=value {
   line-height: 0px;
 }
 span.box-value {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
+}
+.hero-right a.fb svg {
+  color: #0866ff;
+}
+.hero-right a.li svg {
+  color: #007ab5;
 }
