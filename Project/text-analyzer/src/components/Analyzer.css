@@ -145,3 +145,10 @@ span.box-value {
 .hero-right a.li svg {
   color: #007ab5;
 }
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

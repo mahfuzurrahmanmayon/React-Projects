@@ -8,6 +8,11 @@ const Analyzer = () => {
   const [inputText, setInputText] = useState("")
   const [wordCount,setWordCount] = useState(0)
   const [charCount,setCharCount] = useState(0)
+  const [sentenceCount,setSentenceCount] = useState(0)
+  const [paragraphCount,setParagraphCount] = useState(0)
+  const [pronounCount,setPronounCount] = useState(0)
+  const [longestWord,setLongestWord] = useState("")
+  const [readingTime,setReadingTime] = useState(0)
 
   const updateWordCount = (text) => {
     const words = text.trim().split(/\s+/);
@@ -21,11 +26,58 @@ const Analyzer = () => {
 
   }
 
+  const updateSentenceCount = (text) => {
+    const sentences = text.split(/[.!?]/)
+    const filteredSentences = sentences.filter(sentence => sentence.trim() !== "")
+    setSentenceCount(filteredSentences.length)
+  }
+
+  const updateParagraphCount = (text) => {
+    const paragraphs = text.split(/\n\s*\n|\n/)
+    const filteredParagraphs = paragraphs.filter(paragraph => paragraph.trim() !== "");
+    setParagraphCount(filteredParagraphs.length)
+  }
+
+  const updatePronounCount = (text) => {
+    const personalPronouns = ['i', 'me', 'you', 'he', 'she', 'it', 'we', 'us', 'they', 'them'];
+    const words = text.split(/\s+/);
+    const pronouns = words.filter(word => personalPronouns.includes(word.toLowerCase()));
+    setPronounCount(pronouns.length)
+  }
+
+  const updateLongestWord = (text) => {
+    const words = text.split(/\s+/)
+    let longestWord = '';
+    words.forEach(word => {
+      const cleanedWord = word.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"");
+      if(cleanedWord.length > longestWord.length){
+        longestWord = word
+      }
+    })
+    setLongestWord(longestWord)
+  }
+  const updateReadingTime = (text) => {
+    const wordsPerMinute = 200
+    const wordCount = text.split(/\s+/).length;
+    console.log(wordCount)
+    const readingTime = Math.ceil(wordCount / wordsPerMinute);
+    if(text.trim() === ""){
+      setReadingTime(0);
+    }else{
+      setReadingTime(readingTime)
+    }
+  }
+
   const handleTextChange = (e) => {
     const text = e.target.value;
     setInputText(text)
     updateWordCount(text)
     updateCharCount(text)
+    updateSentenceCount(text)
+    updateParagraphCount(text)
+    updatePronounCount(text)
+    updateLongestWord(text)
+    updateReadingTime(text)
   }
 
   return (
@@ -61,15 +113,15 @@ const Analyzer = () => {
             </div>
             <div className="result-box">
               <span className="box-title">Sentences</span>
-              <span className="box=value">5</span>
+              <span className="box=value">{sentenceCount}</span>
             </div>
             <div className="result-box">
               <span className="box-title">Paragraphs</span>
-              <span className="box=value">5</span>
+              <span className="box=value">{paragraphCount}</span>
             </div>
             <div className="result-box">
               <span className="box-title">Pronouns</span>
-              <span className="box=value">5</span>
+              <span className="box=value">{pronounCount}</span>
             </div>
           </div>
           <textarea
@@ -81,11 +133,11 @@ const Analyzer = () => {
           <div className="bottom-result-bar">
             <div className="result-box">
               <span className="box-title">Longest word:</span>
-              <span className="box-value">-</span>
+              <span className="box-value">-{longestWord}</span>
             </div>
             <div className="result-box">
               <span className="box-title">Average Reading Time:</span>
-              <span className="box-value">~</span>
+              <span className="box-value">~{readingTime} Minutes</span>
             </div>
           </div>
         </div>
